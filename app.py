@@ -56,7 +56,7 @@ def index():
             fecha_actual = date.today().strftime("%Y-%m-%d")
             pdf_path = f"valor_carencia_{fecha_actual}.pdf"
             pdf.output(pdf_path)
-            return send_file(pdf_path, as_attachment=True)
+            return send_file(pdf_path)
         except Exception as e:
             return f"<h3>Error: {e}</h3>"
     return render_template('index.html')

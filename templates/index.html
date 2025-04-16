@@ -16,9 +16,42 @@
     <img src="{{ url_for('static', filename='logo_sacrosanto.png') }}" alt="Logo"><br>
     <h2>Calculadora de Carencias</h2>
     <form method="post">
-        <input type="text" name="valor_servicio" placeholder="Valor Servicio Sede" required>
-        <input type="text" name="faltante_carencia" placeholder="Faltante Carencia" required>
+        <input type="text" name="valor_servicio" class="numero" placeholder="Valor Servicio Sede" required>
+        <input type="text" name="faltante_carencia" class="numero" placeholder="Faltante Carencia" required>
+        
         <button type="submit">Calcular</button>
     </form>
 </body>
 </html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.numero').forEach(input => {
+            input.addEventListener('input', () => {
+                let valor = input.value;
+    
+                // Quitar todo excepto dígitos y la coma
+                valor = valor.replace(/[^\d,]/g, '');
+    
+                // Solo permitir una coma
+                const partes = valor.split(',');
+                if (partes.length > 2) {
+                    valor = partes[0] + ',' + partes[1];
+                }
+    
+                let [entero, decimal] = valor.split(',');
+                if (!entero) entero = '0';
+    
+                // Eliminar ceros al inicio
+                entero = entero.replace(/^0+(?=\d)/, '');
+    
+                // Formatear miles
+                entero = entero.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    
+                // Unir parte entera y decimal
+                input.value = decimal !== undefined ? `${entero},${decimal}` : entero;
+            });
+        });
+    });
+    </script>
+    
