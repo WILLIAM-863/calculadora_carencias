@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Carencias</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; text-align: center; }
+        form { background: white; padding: 20px; border-radius: 10px; display: inline-block; }
+        input { padding: 10px; width: 100%; margin: 10px 0; }
+        button { padding: 10px 20px; background: #555; color: white; border: none; border-radius: 5px; }
+        img { width: 140px; }
+    </style>
+</head>
+<body>
+    <img src="{{ url_for('static', filename='logo_sacrosanto.png') }}" alt="Logo"><br>
+    <h2>Calculadora de Carencias</h2>
+    <form method="post">
+        <input type="text" name="valor_servicio" placeholder="Valor Servicio Sede" required>
+        <input type="text" name="faltante_carencia" placeholder="Faltante Carencia" required>
+        <button type="submit">Calcular</button>
+    </form>
+</body>
+</html>
