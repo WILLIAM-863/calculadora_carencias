@@ -8,7 +8,10 @@ from datetime import date
 locale.setlocale(locale.LC_ALL, '')
 
 app = Flask(__name__)
-LOGO_PATH = "C:/Users/U S U A R I O/Downloads/web_carencias/web_carencias/static/logo_sacrosanto.png"
+import os
+
+LOGO_PATH = os.path.join("static", "logo_sacrosanto.png")
+
 
 def limpiar_numero(texto):
     return float(texto.replace('.', '').replace(',', ''))
