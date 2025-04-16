@@ -55,3 +55,34 @@
     });
     </script>
     
+    <script>
+        function formatearNumeroConDecimales(input) {
+            let valor = input.value;
+        
+            // Quitar todo excepto dígitos y la coma
+            valor = valor.replace(/[^\d,]/g, '');
+        
+            // Solo permitir una coma
+            const partes = valor.split(',');
+            if (partes.length > 2) {
+                valor = partes[0] + ',' + partes[1];
+            }
+        
+            // Separar parte entera y decimal
+            let [entero, decimal] = valor.split(',');
+            if (!entero) entero = '0';
+        
+            // Agregar puntos a la parte entera
+            entero = entero.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        
+            // Volver a juntar
+            input.value = decimal !== undefined ? `${entero},${decimal}` : entero;
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.numero').forEach(input => {
+                input.addEventListener('input', () => formatearNumeroConDecimales(input));
+            });
+        });
+        </script>
+        
