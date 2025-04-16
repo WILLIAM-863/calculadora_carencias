@@ -18,9 +18,11 @@ def limpiar_numero(texto):
 
 def formatear_numero(valor):
     try:
-        return locale.format_string("%d", int(round(float(valor))), grouping=True)
+        valor = int(round(float(valor)))
+        return f"{valor:,}".replace(",", ".")
     except:
         return valor
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
